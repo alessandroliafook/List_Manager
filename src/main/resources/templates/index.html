@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org"/>
+
+    <title>SI - List Manager</title>
+
+    <!--Importando CSS-->
+    <link rel="stylesheet" type="text/css"
+          href="css/default.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="css/component.css"/>
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">List Manager</a>
+            <a class="btn navbar-btn" href="#" onclick="changeCSS('css/default.css', 0);">Default
+                Style</a>
+            <a class="btn navbar-btn" href="#" onclick="changeCSS('css/superhero.css', 0);">SuperHero
+                Style</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <a class="btn navbar-btn navbar-right" href="https://github.com/alessandroliafook/taskManager" target="_blank">
+                GitHub</a>
+        </ul>
+    </div>
+</nav>
+
+
+<!--MyApp scope-->
+<div class="center-block container text-center" ng-app="myApp" ng-controller="controller">
+
+    <!--Form to insert new tasks-->
+    <form>
+        <div class="form-group">
+            <label for="taskName"></label>
+            <input type="text" class="form-control center-block input-sm" style="width: 50%"
+                   placeholder="Enter the new task" ng-model="taskName"
+                   id="taskName"/>
+            <a class="btn btn-success btn-sm button" href="#" ng-click="saveTask()"> Add</a>
+            <a class="btn btn-danger btn-sm" href="#" ng-click="removeDoneTasks()"> Remove All Done </a>
+        </div>
+    </form>
+
+    <!--Table with all inserted tasks-->
+    <table class="table table-striped table-hover">
+        <a href="#">Tasks <span class="badge">{{tasks.length}}</span></a>
+        <tbody class="text-left" ng-repeat="task in tasks">
+        <tr class="{{task.priority}}">
+            <td><input type="checkbox" ng-model="task.isDone" ng-change="updateConcludedList($index)"/></td>
+            <td>{{task.titleName}}</td>
+            <td class="text-right"><a class="btn btn-danger btn-xs" href="#" ng-click="deleteTask($index)">X</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!--Progress bar of done tasks-->
+    <div class="progress center-block" style="width: 50%">
+        <div class="progress-bar progress-bar-success" id="done-bar"> Done </div>
+        <div class="progress-bar progress-bar-warning" id="undone-bar"> To Do </div>
+    </div>
+</div>
+
+</body>
+
+<!--Referências do Angular-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"></script>
+<script src="js/app.js"></script>
+<script src="js/view.js"></script>
+</html>

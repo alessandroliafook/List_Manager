@@ -1,0 +1,19 @@
+.table {
+
+    text-align: left;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#progress-bar {
+    width: 0%;
+}
+
+#done-bar {
+    width: 0%;
+}
+
+#undone-bar {
+    width: 100%;
+}
