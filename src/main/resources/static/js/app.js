@@ -19,6 +19,22 @@ app.controller('controller', function ($scope, $http) {
 
     // functions that manipulate the tasks
 
+    $scope.populate = function() {
+
+        $http({
+
+            method: "GET",
+            url: "/task"
+
+        }).then(function(response) {
+            console.log(response);
+            for (var index = 0; index < response.data.length; index++) {
+                var actualTask = response.data[index];
+                $scope.tasks.push(actualTask);
+            }
+        })
+    };
+
     $scope.addTask = function (startTask){
 
         if (!containTaskOnTaskList(startTask.titleName)) {
@@ -113,15 +129,15 @@ app.controller('controller', function ($scope, $http) {
 
     //creating start tasks and add to list to accomplish design request
 
-    //first task
-    var wakeUp = new task("Wake Up");
-    $scope.addTask(wakeUp);
-
-    //second task
-    var breakfast = new task("Breakfast");
-    $scope.addTask(breakfast);
-    //second task
-    var sleep = new task("Sleep");
-    $scope.addTask(sleep);
+//    //first task
+//    var wakeUp = new task("Wake Up");
+//    $scope.addTask(wakeUp);
+//
+//    //second task
+//    var breakfast = new task("Breakfast");
+//    $scope.addTask(breakfast);
+//    //second task
+//    var sleep = new task("Sleep");
+//    $scope.addTask(sleep);
 
 });

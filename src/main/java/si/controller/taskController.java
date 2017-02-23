@@ -19,7 +19,13 @@ public class taskController {
 	@Autowired
 	private TaskBd dataBase;
 
-	public taskController() {}
+	public taskController() {
+		Task acorda = new Task();
+		acorda.setTaskName("Acorda");
+		acorda.setPriority("warning");
+		acorda.setId(null);
+		dataBase.save(acorda);
+	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView getIndex() {
