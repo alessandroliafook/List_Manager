@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css"
           href="css/component.css"/>
 </head>
-<body ng-init="populate()">
+<body>
 
 <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -31,7 +31,7 @@
 
 
 <!--MyApp scope-->
-<div class="center-block container text-center" ng-app="myApp" ng-controller="controller">
+<div class="center-block container text-center" ng-app="myApp" ng-controller="controller" ng-init="populate()">
 
     <!--Form to insert new tasks-->
     <form>

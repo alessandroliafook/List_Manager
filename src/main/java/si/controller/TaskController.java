@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import si.task.Task;
-import si.task.TaskBd;
+import si.database.TaskBd;
 
 import java.util.List;
 
@@ -14,23 +14,17 @@ import java.util.List;
  */
 
 @Controller
-public class taskController {
+public class TaskController {
 
 	@Autowired
 	private TaskBd dataBase;
 
-	public taskController() {
-		Task acorda = new Task();
-		acorda.setTaskName("Acorda");
-		acorda.setPriority("warning");
-		acorda.setId(null);
-		dataBase.save(acorda);
-	}
+	public TaskController() {}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView getIndex() {
-		ModelAndView model = new ModelAndView();
 
+		ModelAndView model = new ModelAndView();
 		model.setViewName("index");
 
 		return model;
@@ -49,7 +43,7 @@ public class taskController {
 
 	/**
 	 * Remove uma task do banco de dados e retorna para o requisitante
-	 * @param taskToRemove - task a ser removida
+	 * @param titleName - Namo da task a ser removida
 	 * @return uma cópia da task removida acaso exista
 	 */
 	@RequestMapping(value = "/task/{titleName}", method = RequestMethod.DELETE)
@@ -60,7 +54,7 @@ public class taskController {
 		return task;
 	}
 
-	@RequestMapping(value = "/task", method = RequestMethod.TRACE)
+	@RequestMapping(value = "/task", method = RequestMethod.GET)
 	public @ResponseBody
 	List<Task> getAllTask(){
 		return dataBase.findAll();
